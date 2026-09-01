@@ -38,7 +38,7 @@ The simplest option is Docker Desktop. Open Android Studio's **Terminal** tab in
 docker compose up -d
 ```
 
-This starts PostgreSQL on port `5432` with database, username, and password all set to `shopirend`. The data is kept in a Docker volume.
+This starts PostgreSQL on host port `5433` with database, username, and password all set to `shopirend`. Port `5433` avoids conflicts with a PostgreSQL installation already using the standard `5432` port. The data is kept in a Docker volume.
 
 If you already have PostgreSQL, create a database and user yourself and supply their values to the backend run configuration in the next step.
 
@@ -49,7 +49,7 @@ If you already have PostgreSQL, create a database and user yourself and supply t
 3. Add these environment variables:
 
 ```text
-DB_URL=jdbc:postgresql://localhost:5432/shopirend;DB_USERNAME=shopirend;DB_PASSWORD=shopirend;JWT_SECRET=replace-this-with-a-long-random-development-secret;FCM_ENABLED=false
+DB_URL=jdbc:postgresql://localhost:5433/shopirend;DB_USERNAME=shopirend;DB_PASSWORD=shopirend;JWT_SECRET=replace-this-with-a-long-random-development-secret;FCM_ENABLED=false
 ```
 
 4. Run `ShopirendApplicationKt`.
@@ -106,7 +106,7 @@ The app registers its current FCM token after authentication. Notifications are 
 
 | Setting | Default | Purpose |
 | --- | --- | --- |
-| `DB_URL` | `jdbc:postgresql://localhost:5432/shopirend` | PostgreSQL JDBC URL |
+| `DB_URL` | `jdbc:postgresql://localhost:5433/shopirend` | PostgreSQL JDBC URL |
 | `DB_USERNAME` | `shopirend` | PostgreSQL user |
 | `DB_PASSWORD` | `shopirend` | PostgreSQL password |
 | `JWT_SECRET` | development fallback | JWT signing secret; always override outside local development |
@@ -133,4 +133,3 @@ backend/src/main/resources/db/migration/
 ```
 
 The schema keeps future retailer products, offers, and simple debts separate from the MVP concepts. No payments, wallet, retailer catalog, GPS, chat, price comparison, or recommendation features are included.
-

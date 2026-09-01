@@ -2,7 +2,7 @@ spring:
   application:
     name: shopirend-backend
   datasource:
-    url: ${DB_URL:jdbc:postgresql://localhost:5432/shopirend}
+    url: ${DB_URL:jdbc:postgresql://localhost:5433/shopirend}
     username: ${DB_USERNAME:shopirend}
     password: ${DB_PASSWORD:shopirend}
   jpa:
@@ -30,4 +30,3 @@ management:
     web:
       exposure:
         include: health,info
-
